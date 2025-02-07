@@ -1,7 +1,24 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "D:\\Coding\\Dotnet Maui\\ATS-Bachelorproef\\ATS\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{1523CBC6-DCD6-493C-B95F-52889309323E}|ATS\\ATS.csproj|d:\\coding\\dotnet maui\\ats-bachelorproef\\ats\\ats\\loginpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{1523CBC6-DCD6-493C-B95F-52889309323E}|ATS\\ATS.csproj|solutionrelative:ats\\loginpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1523CBC6-DCD6-493C-B95F-52889309323E}|ATS\\ATS.csproj|d:\\coding\\dotnet maui\\ats-bachelorproef\\ats\\ats\\appshell.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{1523CBC6-DCD6-493C-B95F-52889309323E}|ATS\\ATS.csproj|solutionrelative:ats\\appshell.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1523CBC6-DCD6-493C-B95F-52889309323E}|ATS\\ATS.csproj|d:\\coding\\dotnet maui\\ats-bachelorproef\\ats\\ats\\viewmodels\\loginpageviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1523CBC6-DCD6-493C-B95F-52889309323E}|ATS\\ATS.csproj|solutionrelative:ats\\viewmodels\\loginpageviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1523CBC6-DCD6-493C-B95F-52889309323E}|ATS\\ATS.csproj|d:\\coding\\dotnet maui\\ats-bachelorproef\\ats\\ats\\viewmodels\\baseviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1523CBC6-DCD6-493C-B95F-52889309323E}|ATS\\ATS.csproj|solutionrelative:ats\\viewmodels\\baseviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,7 +26,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -26,6 +43,58 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "LoginPage.xaml",
+              "DocumentMoniker": "D:\\Coding\\Dotnet Maui\\ATS-Bachelorproef\\ATS\\ATS\\LoginPage.xaml",
+              "RelativeDocumentMoniker": "ATS\\LoginPage.xaml",
+              "ToolTip": "D:\\Coding\\Dotnet Maui\\ATS-Bachelorproef\\ATS\\ATS\\LoginPage.xaml",
+              "RelativeToolTip": "ATS\\LoginPage.xaml",
+              "ViewState": "AgIAABcAAAAAAAAAAADwvygAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-02-07T15:13:03.476Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AppShell.xaml",
+              "DocumentMoniker": "D:\\Coding\\Dotnet Maui\\ATS-Bachelorproef\\ATS\\ATS\\AppShell.xaml",
+              "RelativeDocumentMoniker": "ATS\\AppShell.xaml",
+              "ToolTip": "D:\\Coding\\Dotnet Maui\\ATS-Bachelorproef\\ATS\\ATS\\AppShell.xaml",
+              "RelativeToolTip": "ATS\\AppShell.xaml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-02-07T15:08:59.596Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "BaseViewModel.cs",
+              "DocumentMoniker": "D:\\Coding\\Dotnet Maui\\ATS-Bachelorproef\\ATS\\ATS\\ViewModels\\BaseViewModel.cs",
+              "RelativeDocumentMoniker": "ATS\\ViewModels\\BaseViewModel.cs",
+              "ToolTip": "D:\\Coding\\Dotnet Maui\\ATS-Bachelorproef\\ATS\\ATS\\ViewModels\\BaseViewModel.cs",
+              "RelativeToolTip": "ATS\\ViewModels\\BaseViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-07T15:07:03.378Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "LoginPageViewModel.cs",
+              "DocumentMoniker": "D:\\Coding\\Dotnet Maui\\ATS-Bachelorproef\\ATS\\ATS\\ViewModels\\LoginPageViewModel.cs",
+              "RelativeDocumentMoniker": "ATS\\ViewModels\\LoginPageViewModel.cs",
+              "ToolTip": "D:\\Coding\\Dotnet Maui\\ATS-Bachelorproef\\ATS\\ATS\\ViewModels\\LoginPageViewModel.cs",
+              "RelativeToolTip": "ATS\\ViewModels\\LoginPageViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-07T15:05:54.391Z",
+              "EditorCaption": ""
             }
           ]
         },
