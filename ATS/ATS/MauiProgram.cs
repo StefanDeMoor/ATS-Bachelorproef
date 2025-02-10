@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using ATS.ViewModels;
+using ATS.Views;
+using Microsoft.Extensions.Logging;
 
 namespace ATS
 {
@@ -17,6 +19,11 @@ namespace ATS
 
 #if DEBUG
     		builder.Logging.AddDebug();
+
+            builder.Services.AddSingleton<LoginPage>();
+            builder.Services.AddSingleton<HomePage>();
+            
+            builder.Services.AddSingleton<LoginPageViewModel>(); 
 #endif
 
             return builder.Build();

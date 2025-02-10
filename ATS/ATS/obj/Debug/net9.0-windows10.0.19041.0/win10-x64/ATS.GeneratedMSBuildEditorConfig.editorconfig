@@ -39,18 +39,6 @@ build_metadata.AdditionalFiles.ManifestResourceName = ATS.AppShell.xaml
 build_metadata.AdditionalFiles.TargetPath = AppShell.xaml
 build_metadata.AdditionalFiles.RelativePath = AppShell.xaml
 
-[D:/Coding/Dotnet Maui/ATS-Bachelorproef/ATS/ATS/LoginPage.xaml]
-build_metadata.AdditionalFiles.GenKind = Xaml
-build_metadata.AdditionalFiles.ManifestResourceName = ATS.LoginPage.xaml
-build_metadata.AdditionalFiles.TargetPath = LoginPage.xaml
-build_metadata.AdditionalFiles.RelativePath = LoginPage.xaml
-
-[D:/Coding/Dotnet Maui/ATS-Bachelorproef/ATS/ATS/MainPage.xaml]
-build_metadata.AdditionalFiles.GenKind = Xaml
-build_metadata.AdditionalFiles.ManifestResourceName = ATS.MainPage.xaml
-build_metadata.AdditionalFiles.TargetPath = MainPage.xaml
-build_metadata.AdditionalFiles.RelativePath = MainPage.xaml
-
 [D:/Coding/Dotnet Maui/ATS-Bachelorproef/ATS/ATS/Resources/Styles/Colors.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = ATS.Resources.Styles.Colors.xaml
@@ -68,3 +56,9 @@ build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = ATS.Views.HomePage.xaml
 build_metadata.AdditionalFiles.TargetPath = Views\HomePage.xaml
 build_metadata.AdditionalFiles.RelativePath = Views\HomePage.xaml
+
+[D:/Coding/Dotnet Maui/ATS-Bachelorproef/ATS/ATS/Views/LoginPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ATS.Views.LoginPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\LoginPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\LoginPage.xaml

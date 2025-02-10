@@ -1,4 +1,6 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using ATS.Views;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,5 +16,17 @@ namespace ATS.ViewModels
 
         [ObservableProperty]
         private string _password;
+
+        public IRelayCommand LoginCommand { get; }
+
+        public LoginPageViewModel()
+        {
+            LoginCommand = new RelayCommand(Inloggen);
+        }
+
+        private async void Inloggen()
+        {
+            await Shell.Current.GoToAsync($"//{nameof(HomePage)}");
+        }
     }
 }
