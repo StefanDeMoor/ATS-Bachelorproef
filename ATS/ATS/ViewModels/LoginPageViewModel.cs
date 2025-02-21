@@ -23,10 +23,10 @@ namespace ATS.ViewModels
         public LoginPageViewModel()
         {
             IsErrorVisible = false;
-            LoginCommand = new RelayCommand(Inloggen, CanLogIn);
+            LoginCommand = new RelayCommand(Login, CanLogIn);
         }
 
-        private async void Inloggen()
+        private async void Login()
         {
             if (!CanLogIn())
             {
