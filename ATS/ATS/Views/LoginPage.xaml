@@ -17,9 +17,12 @@
         <Path  Data="m0.30001,0l449,0l0,128.48327c-122.5,64.30167 -332.5,65.89076 -449,7.2429c0,-45.25313 0,-90.47304 0,-135.72617z" Fill="CornflowerBlue"/>
 
         <StackLayout>
-            <Frame BackgroundColor="LightGray" HeightRequest="60" WidthRequest="60" CornerRadius="30" Padding="0" Margin="0, 100, 0, 0" HorizontalOptions="Center">
+            <Border BackgroundColor="LightGray" HeightRequest="60" WidthRequest="60" Padding="0" Margin="0, 100, 0, 0" HorizontalOptions="Center">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="30"/>
+                </Border.StrokeShape>
                 <Image Source="user" Aspect="AspectFill" Margin="0" />
-            </Frame>
+            </Border>
         </StackLayout>
 
         <Grid RowSpacing="5" Grid.Row="1" Margin="20, 20, 20, 0">
@@ -35,34 +38,49 @@
             <Label Grid.Row="1" Text="Welcome!" HorizontalOptions="Center" FontSize="Title" FontAttributes="Bold" Padding="0" Margin="0"/>
             <Label Grid.Row="2" Text="Sign in to continue" HorizontalOptions="Center" FontSize="Subtitle"/>
 
-            <StackLayout Grid.Row="3" Orientation="Vertical" HorizontalOptions="FillAndExpand">
-                <Frame BackgroundColor="Transparent" BorderColor="CornflowerBlue" Padding="0" HorizontalOptions="FillAndExpand" CornerRadius="30">
-                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                        <Frame BackgroundColor="LightGray" HeightRequest="40" CornerRadius="30" Padding="0" Margin="5">
+            <StackLayout Grid.Row="3" Orientation="Vertical">
+                <Border BackgroundColor="Transparent" Stroke="CornflowerBlue" Padding="0">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="30"/>
+                    </Border.StrokeShape>
+                    <Grid ColumnDefinitions="Auto, *">
+                        <Border BackgroundColor="LightGray" HeightRequest="40" Padding="0" Margin="5" Grid.Column="0">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="30"/>
+                            </Border.StrokeShape>
                             <Image Source="user" Aspect="AspectFill" Margin="0"/>
-                        </Frame>
-                        <Entry Text="{Binding UserName}" Placeholder="Username" TextColor="Black" FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="FillAndExpand" BackgroundColor="Transparent"/>
-                    </StackLayout>
-                </Frame>
-                <Frame BackgroundColor="Transparent" BorderColor="CornflowerBlue" Padding="0" Margin="0, 15, 0, 0" HorizontalOptions="FillAndExpand" CornerRadius="30">
-                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                        <Frame BackgroundColor="LightGray" HeightRequest="40" CornerRadius="30" Padding="0" Margin="5">
+                        </Border>
+                        <Entry  Text="{Binding UserName}" Placeholder="Username" TextColor="Black" FontAttributes="Bold"
+                                VerticalOptions="Center" HorizontalOptions="Fill" BackgroundColor="Transparent" Grid.Column="1"/>
+                    </Grid>
+                </Border>
+                <Border BackgroundColor="Transparent" Stroke="CornflowerBlue" Padding="0" Margin="0, 15, 0, 0">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="30"/>
+                    </Border.StrokeShape>
+                    <Grid ColumnDefinitions="Auto, *">
+                        <Border BackgroundColor="LightGray" HeightRequest="40" Padding="0" Margin="5" Grid.Column="0">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="30"/>
+                            </Border.StrokeShape>
                             <Image Source="lock" Aspect="AspectFill" Margin="0"/>
-                        </Frame>
-                        <Entry Text="{Binding Password}" Placeholder="Password" TextColor="Black" FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="FillAndExpand" BackgroundColor="Transparent"/>
-                    </StackLayout>
-                </Frame>
+                        </Border>
+                        <Entry  Text="{Binding Password}" Placeholder="Password" TextColor="Black" FontAttributes="Bold"
+                                VerticalOptions="Center" HorizontalOptions="Fill" BackgroundColor="Transparent" Grid.Column="1"/>
+                    </Grid>
+
+                </Border>
 
                 <Label 
                     Text="{Binding ErrorMessage}" 
                     TextColor="Red" 
                     IsVisible="{Binding IsErrorVisible}" />
 
-                <StackLayout Orientation="Horizontal" Margin="0, 10, 0, 0" Padding="0">
-                    <CheckBox IsChecked="False" />
-                    <Label Text="Remember me" TextColor="Black" FontSize="Small" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
-                    <Label Text="Forgot Password?" TextColor="CornflowerBlue" FontAttributes="Bold" HorizontalOptions="EndAndExpand" VerticalTextAlignment="Center" />
-                </StackLayout>
+                <Grid ColumnDefinitions="Auto, *, Auto" Margin="0, 10, 0, 0">
+                    <CheckBox Grid.Column="0" IsChecked="False" />
+                    <Label Grid.Column="1" Text="Remember me" TextColor="Black" FontSize="Small" VerticalTextAlignment="Center" HorizontalTextAlignment="Start"/>
+                    <Label Grid.Column="2" Text="Forgot Password?" TextColor="CornflowerBlue" FontAttributes="Bold" HorizontalOptions="End" VerticalTextAlignment="Center" />
+                </Grid>
 
                 <Button  Text="SIGN IN" 
                          BackgroundColor="CornflowerBlue" 
