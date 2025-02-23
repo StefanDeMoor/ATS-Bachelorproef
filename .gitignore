@@ -387,3 +387,16 @@ temp
 
 # Visual Studio solution user options
 *.suo
+*.dll
+
+*.cs
+
+*.cache
+
+*.editorconfig
+
+*.props
+
+*.outputs
+
+ATS/ATS/obj/Debug/net9.0-android/R.txt
