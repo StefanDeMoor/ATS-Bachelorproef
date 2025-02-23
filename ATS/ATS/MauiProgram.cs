@@ -1,4 +1,5 @@
-﻿using ATS.ViewModels;
+﻿using ATS.Services;
+using ATS.ViewModels;
 using ATS.Views;
 using Microsoft.Extensions.Logging;
 
@@ -19,6 +20,9 @@ namespace ATS
 
 #if DEBUG
     		builder.Logging.AddDebug();
+
+            builder.Services.AddHttpClient();
+            builder.Services.AddSingleton<IAuthService, AuthService>();
 
             builder.Services.AddSingleton<LoginPage>();
             builder.Services.AddSingleton<HomePage>();

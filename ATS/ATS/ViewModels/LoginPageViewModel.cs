@@ -1,4 +1,5 @@
-﻿using ATS.Views;
+﻿using ATS.Services;
+using ATS.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 
@@ -6,6 +7,8 @@ namespace ATS.ViewModels
 {
     public partial class LoginPageViewModel : BaseViewModel
     {
+        private readonly IAuthService _authService;
+
         [ObservableProperty]
         private string _userName;
 
@@ -20,19 +23,24 @@ namespace ATS.ViewModels
 
         public IRelayCommand LoginCommand { get; }
 
-        public LoginPageViewModel()
+        public LoginPageViewModel(IAuthService authService)
         {
             IsErrorVisible = false;
             LoginCommand = new RelayCommand(Login, CanLogIn);
+            _authService = authService;
         }
 
         private async void Login()
         {
-            if (!CanLogIn())
+            if (CanLogIn() && await _authService.isUserAuthenticated())
+            {
+                await Shell.Current.GoToAsync($"//{nameof(HomePage)}");
+            }
+            else
             {
                 return;
             }
-            await Shell.Current.GoToAsync($"//{nameof(HomePage)}");
+            
         }
 
         private bool CanLogIn()
