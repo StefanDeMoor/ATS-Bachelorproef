@@ -1,8 +1,4 @@
 is_global = true
-build_property.EnableAotAnalyzer = 
-build_property.EnableSingleFileAnalyzer = true
-build_property.EnableTrimAnalyzer = false
-build_property.IncludeAllContentForSelfExtract = 
 build_property.MvvmToolkitEnableINotifyPropertyChangingSupport = true
 build_property._MvvmToolkitIsUsingWindowsRuntimePack = false
 build_property.CsWinRTComponent = 
@@ -17,50 +13,44 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = ATS
-build_property.ProjectDir = D:\Coding\Dotnet Maui\ATS-Bachelorproef\ATS\ATS\
+build_property.ProjectDir = C:\Users\Stefan De Moor\Desktop\code bachelorproef\ATS-Bachelorproef\ATS\ATS\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.EffectiveAnalysisLevelStyle = 9.0
 build_property.EnableCodeStyleSeverity = 
 
-[D:/Coding/Dotnet Maui/ATS-Bachelorproef/ATS/ATS/App.xaml]
+[C:/Users/Stefan De Moor/Desktop/code bachelorproef/ATS-Bachelorproef/ATS/ATS/App.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = ATS.App.xaml
 build_metadata.AdditionalFiles.TargetPath = App.xaml
 build_metadata.AdditionalFiles.RelativePath = App.xaml
 
-[D:/Coding/Dotnet Maui/ATS-Bachelorproef/ATS/ATS/AppShell.xaml]
+[C:/Users/Stefan De Moor/Desktop/code bachelorproef/ATS-Bachelorproef/ATS/ATS/AppShell.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = ATS.AppShell.xaml
 build_metadata.AdditionalFiles.TargetPath = AppShell.xaml
 build_metadata.AdditionalFiles.RelativePath = AppShell.xaml
 
-[D:/Coding/Dotnet Maui/ATS-Bachelorproef/ATS/ATS/LoginPage.xaml]
-build_metadata.AdditionalFiles.GenKind = Xaml
-build_metadata.AdditionalFiles.ManifestResourceName = ATS.LoginPage.xaml
-build_metadata.AdditionalFiles.TargetPath = LoginPage.xaml
-build_metadata.AdditionalFiles.RelativePath = LoginPage.xaml
-
-[D:/Coding/Dotnet Maui/ATS-Bachelorproef/ATS/ATS/MainPage.xaml]
-build_metadata.AdditionalFiles.GenKind = Xaml
-build_metadata.AdditionalFiles.ManifestResourceName = ATS.MainPage.xaml
-build_metadata.AdditionalFiles.TargetPath = MainPage.xaml
-build_metadata.AdditionalFiles.RelativePath = MainPage.xaml
-
-[D:/Coding/Dotnet Maui/ATS-Bachelorproef/ATS/ATS/Resources/Styles/Colors.xaml]
+[C:/Users/Stefan De Moor/Desktop/code bachelorproef/ATS-Bachelorproef/ATS/ATS/Resources/Styles/Colors.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = ATS.Resources.Styles.Colors.xaml
 build_metadata.AdditionalFiles.TargetPath = Resources\Styles\Colors.xaml
 build_metadata.AdditionalFiles.RelativePath = Resources\Styles\Colors.xaml
 
-[D:/Coding/Dotnet Maui/ATS-Bachelorproef/ATS/ATS/Resources/Styles/Styles.xaml]
+[C:/Users/Stefan De Moor/Desktop/code bachelorproef/ATS-Bachelorproef/ATS/ATS/Resources/Styles/Styles.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = ATS.Resources.Styles.Styles.xaml
 build_metadata.AdditionalFiles.TargetPath = Resources\Styles\Styles.xaml
 build_metadata.AdditionalFiles.RelativePath = Resources\Styles\Styles.xaml
 
-[D:/Coding/Dotnet Maui/ATS-Bachelorproef/ATS/ATS/Views/HomePage.xaml]
+[C:/Users/Stefan De Moor/Desktop/code bachelorproef/ATS-Bachelorproef/ATS/ATS/Views/HomePage.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = ATS.Views.HomePage.xaml
 build_metadata.AdditionalFiles.TargetPath = Views\HomePage.xaml
 build_metadata.AdditionalFiles.RelativePath = Views\HomePage.xaml
+
+[C:/Users/Stefan De Moor/Desktop/code bachelorproef/ATS-Bachelorproef/ATS/ATS/Views/LoginPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ATS.Views.LoginPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\LoginPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\LoginPage.xaml

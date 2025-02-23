@@ -1,9 +1,6 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ATS.Views;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 
 namespace ATS.ViewModels
 {
@@ -14,5 +11,47 @@ namespace ATS.ViewModels
 
         [ObservableProperty]
         private string _password;
+
+        [ObservableProperty]
+        private string _errorMessage;
+
+        [ObservableProperty]
+        private bool _isErrorVisible;
+
+        public IRelayCommand LoginCommand { get; }
+
+        public LoginPageViewModel()
+        {
+            IsErrorVisible = false;
+            LoginCommand = new RelayCommand(Login, CanLogIn);
+        }
+
+        private async void Login()
+        {
+            if (!CanLogIn())
+            {
+                return;
+            }
+            await Shell.Current.GoToAsync($"//{nameof(HomePage)}");
+        }
+
+        private bool CanLogIn()
+        {
+            bool canLogin = !string.IsNullOrWhiteSpace(UserName) && !string.IsNullOrWhiteSpace(Password);
+            if (!canLogin)
+            {
+                ErrorMessage = "Username and password cannot be empty.";
+                IsErrorVisible = true;
+            }
+            else
+            {
+                ErrorMessage = string.Empty;
+                IsErrorVisible = false;
+            }
+            return canLogin;
+        }
+
+        partial void OnUserNameChanged(string value) => LoginCommand.NotifyCanExecuteChanged();
+        partial void OnPasswordChanged(string value) => LoginCommand.NotifyCanExecuteChanged();
     }
 }

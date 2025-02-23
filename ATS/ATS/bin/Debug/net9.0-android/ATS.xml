@@ -22,6 +22,22 @@
         <member name="P:ATS.ViewModels.LoginPageViewModel.Password">
             <inheritdoc cref="F:ATS.ViewModels.LoginPageViewModel._password"/>
         </member>
+        <member name="P:ATS.ViewModels.LoginPageViewModel.ErrorMessage">
+            <inheritdoc cref="F:ATS.ViewModels.LoginPageViewModel._errorMessage"/>
+        </member>
+        <member name="P:ATS.ViewModels.LoginPageViewModel.IsErrorVisible">
+            <inheritdoc cref="F:ATS.ViewModels.LoginPageViewModel._isErrorVisible"/>
+        </member>
+        <member name="M:ATS.ViewModels.LoginPageViewModel.OnUserNameChanged(System.String)">
+            <summary>Executes the logic for when <see cref="P:ATS.ViewModels.LoginPageViewModel.UserName"/> just changed.</summary>
+            <param name="value">The new property value that was set.</param>
+            <remarks>This method is invoked right after the value of <see cref="P:ATS.ViewModels.LoginPageViewModel.UserName"/> is changed.</remarks>
+        </member>
+        <member name="M:ATS.ViewModels.LoginPageViewModel.OnPasswordChanged(System.String)">
+            <summary>Executes the logic for when <see cref="P:ATS.ViewModels.LoginPageViewModel.Password"/> just changed.</summary>
+            <param name="value">The new property value that was set.</param>
+            <remarks>This method is invoked right after the value of <see cref="P:ATS.ViewModels.LoginPageViewModel.Password"/> is changed.</remarks>
+        </member>
         <member name="T:ATS.Resource">
             <summary>
             Android Resource Designer class.
@@ -46,6 +62,12 @@
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Password">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Password" generated properties.</summary>
         </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.ErrorMessage">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "ErrorMessage" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.IsErrorVisible">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "IsErrorVisible" generated properties.</summary>
+        </member>
         <member name="T:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs">
             <summary>
             A helper type providing cached, reusable <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instances
@@ -63,6 +85,12 @@
         </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Password">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Password" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.ErrorMessage">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "ErrorMessage" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.IsErrorVisible">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "IsErrorVisible" generated properties.</summary>
         </member>
     </members>
 </doc>
