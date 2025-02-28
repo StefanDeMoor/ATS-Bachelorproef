@@ -1,10 +1,13 @@
-﻿using ATS.Models;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using API.Data;
+using Shared.Interfaces;
+using Shared.DTOs;
+using ATS.Api.Models;
+using System.Security.Cryptography;
 
 namespace API.Services
 {
@@ -19,46 +22,50 @@ namespace API.Services
             _config = config;
         }
 
-        public async Task<string> RegisterAsync(RegisterModel model)
+        public async Task<bool> RegisterAsync(ApiRegisterModel model)
         {
-            if (await _dbContext.Users.AnyAsync(u => u.Email == model.Email))
+            var existingUser = await _dbContext.Users.AnyAsync(u => u.Email == model.Email);
+            if (existingUser)
             {
-                return "User already exists";
+                return false; 
             }
 
- 
-            var hashedPassword = model.Password;
-
-            var newUser = new LoginModel
+            var newUser = new ApiLoginModel
             {
                 Email = model.Email,
-                Password = hashedPassword
+                Password = HashPassword(model.Password!)
             };
 
             _dbContext.Users.Add(newUser);
             await _dbContext.SaveChangesAsync();
-
-            return "User registered successfully";
+            return true;
         }
 
-        public async Task<LoginResponse?> LoginAsync(LoginModel model)
+        private string HashPassword(string password)
+        {
+            using var sha256 = SHA256.Create();
+            var bytes = Encoding.UTF8.GetBytes(password);
+            var hash = sha256.ComputeHash(bytes);
+            return Convert.ToBase64String(hash);
+        }
+
+        public async Task<LoginResponseDto?> LoginAsync(ApiLoginModel model)
         {
             var user = await _dbContext.Users.FirstOrDefaultAsync(u => u.Email == model.Email);
             if (user == null)
             {
-                return null; 
+                return null;
             }
 
             var token = GenerateToken(user.Email!);
 
-            return new LoginResponse
+            return new LoginResponseDto
             {
                 AccessToken = token,
-                RefreshToken = "dummy-refresh-token", 
-                UserName = user.Email
+                RefreshToken = "dummy-refresh-token",
+                UserName = user.Email!
             };
         }
-
         private string GenerateToken(string email)
         {
             var key = Encoding.UTF8.GetBytes(_config["Jwt:Key"]!);

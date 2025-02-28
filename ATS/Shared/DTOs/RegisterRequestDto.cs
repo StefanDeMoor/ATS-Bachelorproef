@@ -1,8 +1,6 @@
-﻿using Shared.Interfaces;
-
-namespace ATS.Models
+﻿namespace Shared.DTOs
 {
-    public class LoginModel : ILoginModel
+    public class RegisterRequestDto
     {
         public string? Email { get; set; }
         public string? Password { get; set; }

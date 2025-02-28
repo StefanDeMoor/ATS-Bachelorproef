@@ -1,38 +1,49 @@
-﻿
-using ATS.Models;
+﻿using ATS.Models;
 using System.Net.Http.Json;
 using System.Text.Json;
+using Shared.DTOs;
 
-namespace ATS.Services
+namespace ATS.Client.Services
 {
     public class ClientService
     {
-        private readonly IHttpClientFactory httpClientFactory;
+        private readonly IHttpClientFactory _httpClientFactory;
+
         public ClientService(IHttpClientFactory httpClientFactory)
         {
-            this.httpClientFactory = httpClientFactory;
+            _httpClientFactory = httpClientFactory;
         }
 
         public async Task Register(RegisterModel model)
         {
-            var httpClient = httpClientFactory.CreateClient("custom-httpclient");
-            var result = await httpClient.PostAsJsonAsync("/register", model);
-            if (result.IsSuccessStatusCode)
+            var httpClient = _httpClientFactory.CreateClient("custom-httpclient");
+
+            var requestDto = new RegisterRequestDto
             {
-                await Shell.Current.DisplayAlert("Alert", "sucessfully Register", "Ok");
-            }
-            await Shell.Current.DisplayAlert("Alert", result.ReasonPhrase, "Ok"); ;
+                Email = model.Email,
+                Password = model.Password
+            };
+
+            var result = await httpClient.PostAsJsonAsync("/api/auth/register", requestDto);
+            result.EnsureSuccessStatusCode(); 
         }
 
         public async Task Login(LoginModel model)
         {
-            var httpClient = httpClientFactory.CreateClient("custom-httpclient");
-            var result = await httpClient.PostAsJsonAsync("/login", model);
-            var response = await result.Content.ReadFromJsonAsync<LoginResponse>();
+            var httpClient = _httpClientFactory.CreateClient("custom-httpclient");
+
+            var requestDto = new LoginRequestDto
+            {
+                Email = model.Email,
+                Password = model.Password
+            };
+
+            var result = await httpClient.PostAsJsonAsync("/api/auth/login", requestDto);
+            var response = await result.Content.ReadFromJsonAsync<LoginResponseDto>();
+
             if (response is not null)
             {
-                var serializeResponse = JsonSerializer.Serialize(
-                    new LoginResponse() { AccessToken = response.AccessToken, RefreshToken = response.RefreshToken, UserName = model.Email });
+                var serializeResponse = JsonSerializer.Serialize(response);
                 await SecureStorage.Default.SetAsync("Authentication", serializeResponse);
             }
         }

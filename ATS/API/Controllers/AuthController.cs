@@ -1,8 +1,9 @@
-﻿using ATS.Models;
-using API.Services;
+﻿using ATS.Api.Models;
 using Microsoft.AspNetCore.Mvc;
+using API.Services;
+using Shared.DTOs;
 
-namespace ATS.Api.Controllers
+namespace Api.Controllers
 {
     [ApiController]
     [Route("api/auth")]
@@ -16,20 +17,40 @@ namespace ATS.Api.Controllers
         }
 
         [HttpPost("register")]
-        public async Task<IActionResult> Register([FromBody] RegisterModel model)
+        public async Task<IActionResult> Register([FromBody] RegisterRequestDto request)
         {
-            var message = await _authService.RegisterAsync(model);
-            return Ok(new { message });
+            var registerModel = new ApiRegisterModel
+            {
+                Email = request.Email,
+                Password = request.Password
+            };
+
+            var isRegistered = await _authService.RegisterAsync(registerModel);
+
+            if (isRegistered)
+            {
+                return Ok(new { message = "User registered successfully" });
+            }
+
+            return BadRequest(new { message = "Email is already in use" });
         }
 
         [HttpPost("login")]
-        public async Task<IActionResult> Login([FromBody] LoginModel model)
+        public async Task<IActionResult> Login([FromBody] LoginRequestDto request)
         {
-            var response = await _authService.LoginAsync(model);
+            var loginModel = new ApiLoginModel
+            {
+                Email = request.Email,
+                Password = request.Password
+            };
+
+            var response = await _authService.LoginAsync(loginModel);
+
             if (response != null)
             {
                 return Ok(response);
             }
+
             return Unauthorized(new { message = "Invalid credentials" });
         }
     }

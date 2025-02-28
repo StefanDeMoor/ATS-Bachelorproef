@@ -1,5 +1,5 @@
-﻿using ATS.Models;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using ATS.Api.Models;
 
 namespace API.Data
 {
@@ -7,6 +7,6 @@ namespace API.Data
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
-        public DbSet<LoginModel> Users { get; set; }
+        public DbSet<ApiLoginModel> Users { get; set; }
     }
 }

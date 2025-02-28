@@ -14,7 +14,7 @@ builder.Services.AddEndpointsApiExplorer();
 
 //Starting...
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-builder.Services.AddSingleton<AuthService>();
+builder.Services.AddScoped<AuthService>();
 builder.Services.AddAuthentication();
 builder.Services.AddIdentityApiEndpoints<IdentityUser>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
