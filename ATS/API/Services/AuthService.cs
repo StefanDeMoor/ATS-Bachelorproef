@@ -57,7 +57,7 @@ namespace API.Services
                 return null;
             }
 
-            var token = GenerateToken(user.Email!);
+            var token = GenerateJwtToken();
 
             return new LoginResponseDto
             {
@@ -66,24 +66,43 @@ namespace API.Services
                 UserName = user.Email!
             };
         }
-        private string GenerateToken(string email)
+        public string GenerateJwtToken()
         {
-            var key = Encoding.UTF8.GetBytes(_config["Jwt:Key"]!);
-            var credentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256);
+            var secretKey = _config["Jwt:Key"]!;
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey));
+            var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+
+            var issuedAt = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
+            var expiration = issuedAt + 1800; // Token expires in 30 minutes
 
             var claims = new[]
             {
-                new Claim(JwtRegisteredClaimNames.Sub, email),
-                new Claim(JwtRegisteredClaimNames.Email, email),
-                new Claim("role", "user")
-            };
+        new Claim(JwtRegisteredClaimNames.Sub, "root"),
+        new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+        new Claim(JwtRegisteredClaimNames.Iat, issuedAt.ToString(), ClaimValueTypes.Integer64),
+        new Claim("user_name", "root"),
+        new Claim("user_id", "13dab5e3-deba-46a1-8d03-08d731ce02d6"),
+        new Claim("language", "en"),
+        new Claim("timezone", "Europe/Brussels"),
+        new Claim("loggedInWithAD", "False"),
+        new Claim("P_Dashboards", "f"),
+        new Claim("P_DataSources", "f"),
+        new Claim("P_Settings", "f"),
+        new Claim("P_Task", "f"),
+        new Claim("refresh_token", Guid.NewGuid().ToString()),
+        new Claim(JwtRegisteredClaimNames.Nbf, issuedAt.ToString(), ClaimValueTypes.Integer64),
+        new Claim(JwtRegisteredClaimNames.Exp, expiration.ToString(), ClaimValueTypes.Integer64),
+        new Claim(JwtRegisteredClaimNames.Iss, _config["Jwt:Issuer"]!),
+        new Claim(JwtRegisteredClaimNames.Aud, _config["Jwt:Audience"]!)
+    };
 
             var token = new JwtSecurityToken(
                 issuer: _config["Jwt:Issuer"],
                 audience: _config["Jwt:Audience"],
                 claims: claims,
-                expires: DateTime.UtcNow.AddHours(1),
-                signingCredentials: credentials);
+                expires: DateTimeOffset.FromUnixTimeSeconds(expiration).UtcDateTime,
+                signingCredentials: credentials
+            );
 
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
