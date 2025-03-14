@@ -28,7 +28,7 @@ namespace ATS.Client.Services
             result.EnsureSuccessStatusCode(); 
         }
 
-        public async Task Login(LoginModel model)
+        public async Task<bool> Login(LoginModel model)
         {
             var httpClient = _httpClientFactory.CreateClient("custom-httpclient");
 
@@ -39,13 +39,19 @@ namespace ATS.Client.Services
             };
 
             var result = await httpClient.PostAsJsonAsync("/api/auth/login", requestDto);
-            var response = await result.Content.ReadFromJsonAsync<LoginResponseDto>();
 
-            if (response is not null)
+            if (result.IsSuccessStatusCode)
             {
-                var serializeResponse = JsonSerializer.Serialize(response);
-                await SecureStorage.Default.SetAsync("Authentication", serializeResponse);
+                var response = await result.Content.ReadFromJsonAsync<LoginResponseDto>();
+
+                if (response != null && !string.IsNullOrEmpty(response.UserName))
+                {
+                    var serializeResponse = JsonSerializer.Serialize(response);
+                    await SecureStorage.Default.SetAsync("Authentication", serializeResponse);
+                    return true;
+                }
             }
+            return false; 
         }
     }
 }

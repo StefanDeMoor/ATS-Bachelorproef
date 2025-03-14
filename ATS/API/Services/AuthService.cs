@@ -57,6 +57,11 @@ namespace API.Services
                 return null;
             }
 
+            if (!VerifyPassword(model.Password!, user.Password!))
+            {
+                return null;
+            }
+
             var token = GenerateJwtToken();
 
             return new LoginResponseDto
@@ -65,6 +70,16 @@ namespace API.Services
                 RefreshToken = "dummy-refresh-token",
                 UserName = user.Email!
             };
+        }
+
+        private bool VerifyPassword(string providedPassword, string storedPasswordHash)
+        {
+            using var sha256 = SHA256.Create();
+            var bytes = Encoding.UTF8.GetBytes(providedPassword);
+            var hash = sha256.ComputeHash(bytes);
+            var computedHash = Convert.ToBase64String(hash);
+
+            return computedHash == storedPasswordHash;
         }
         public string GenerateJwtToken()
         {

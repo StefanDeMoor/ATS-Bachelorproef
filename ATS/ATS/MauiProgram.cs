@@ -1,5 +1,5 @@
-﻿using ATS.Platforms.Android;
-using ATS.Services;
+﻿using ATS.Client.Services;
+using ATS.Platforms.Android;
 using ATS.ViewModels;
 using ATS.Views;
 using Microsoft.Extensions.Logging;

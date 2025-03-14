@@ -1,9 +1,9 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using ATS.Models;
-using ATS.Services;
 using System.Text.Json;
 using ATS.Views;
+using ATS.Client.Services;
 namespace ATS.ViewModels
 {
     public partial class LoginPageViewModel : ObservableObject
@@ -35,7 +35,7 @@ namespace ATS.ViewModels
             LoginModel = new();
             IsAuthenticated = false;
             //IsErrorVisible = false;
-            GetUserNameFromSecuredStorage();
+            //GetUserNameFromSecuredStorage();
         }
 
         [RelayCommand]
@@ -47,9 +47,29 @@ namespace ATS.ViewModels
         [RelayCommand]
         private async Task Login()
         {
-            await clientService.Login(LoginModel);
-            GetUserNameFromSecuredStorage();
-            await Shell.Current.GoToAsync($"//{nameof(HomePage)}");
+            bool loginSuccess = await clientService.Login(LoginModel);
+
+            if (loginSuccess)
+            {
+                await GetUserNameFromSecuredStorage();
+
+                if (IsAuthenticated && UserName != "Guest" && !string.IsNullOrEmpty(UserName))
+                {
+                    await Shell.Current.GoToAsync($"//{nameof(HomePage)}");
+                }
+                else
+                {
+                    // Handle invalid login (e.g., show error message)
+                   // IsErrorVisible = true;
+                    //_errorMessage = "Login failed. Please try again.";
+                }
+            }
+            else
+            {
+                // Show error message if login fails
+                //IsErrorVisible = true;
+                //_errorMessage = "Invalid credentials.";
+            }
         }
 
         [RelayCommand]
@@ -62,22 +82,23 @@ namespace ATS.ViewModels
         }
 
 
-        private async void GetUserNameFromSecuredStorage()
+        private async Task GetUserNameFromSecuredStorage()
         {
-            if (!string.IsNullOrEmpty(UserName) && UserName! != "Guest")
-            {
-                IsAuthenticated = true;
-                return;
-            }
-            var serializedLoginResponseInStorage = await SecureStorage.Default.GetAsync("Authentication");
-            if (serializedLoginResponseInStorage != null)
-            {
-                UserName = JsonSerializer.Deserialize<LoginResponse>(serializedLoginResponseInStorage)!.UserName!;
-                IsAuthenticated = true;
-                return;
-            }
             UserName = "Guest";
             IsAuthenticated = false;
+
+            var serializedLoginResponseInStorage = await SecureStorage.Default.GetAsync("Authentication");
+
+            if (serializedLoginResponseInStorage != null)
+            {
+                var loginResponse = JsonSerializer.Deserialize<LoginResponse>(serializedLoginResponseInStorage);
+
+                if (loginResponse != null && !string.IsNullOrEmpty(loginResponse.UserName))
+                {
+                    UserName = loginResponse.UserName;
+                    IsAuthenticated = true;
+                }
+            }
         }
 
         partial void OnUserNameChanged(string value) => LoginCommand.NotifyCanExecuteChanged();
