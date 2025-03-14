@@ -1,4 +1,6 @@
-﻿namespace ATS.Models
+﻿using Shared.Enums;
+
+namespace ATS.Models
 {
     public class RegisterModel
     {

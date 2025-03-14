@@ -33,7 +33,8 @@ namespace API.Services
             var newUser = new ApiLoginModel
             {
                 Email = model.Email,
-                Password = HashPassword(model.Password!)
+                Password = HashPassword(model.Password!),
+                Role = model.Role
             };
 
             _dbContext.Users.Add(newUser);
