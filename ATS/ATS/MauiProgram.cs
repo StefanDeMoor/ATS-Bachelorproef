@@ -1,4 +1,6 @@
-﻿using ATS.ViewModels;
+﻿using ATS.Client.Services;
+using ATS.Platforms.Android;
+using ATS.ViewModels;
 using ATS.Views;
 using Microsoft.Extensions.Logging;
 
@@ -17,9 +19,30 @@ namespace ATS
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
 
-#if DEBUG
-    		builder.Logging.AddDebug();
+            builder.Services.AddSingleton<IPlatformHttpMessageHandler>(sp =>
+            {
+#if ANDROID
+                return new AndroidHttpMessageHandler();
+#else
+                return null!;
+#endif
 
+            });
+
+            builder.Services.AddHttpClient("custom-httpclient", httpClient =>
+            {
+                var baseAddress = DeviceInfo.Platform == DevicePlatform.Android ? "https://10.0.2.2:7005" : "https://localhost:7005";
+                httpClient.BaseAddress = new Uri(baseAddress);
+            }).ConfigureHttpMessageHandlerBuilder(configBuilder =>
+            {
+                var platformMessageHandler = configBuilder.Services.GetRequiredService<IPlatformHttpMessageHandler>();
+                configBuilder.PrimaryHandler = platformMessageHandler.GetHttpMessageHandler();
+            });
+
+#if DEBUG
+            builder.Logging.AddDebug();
+
+            builder.Services.AddSingleton<ClientService>();
             builder.Services.AddSingleton<LoginPage>();
             builder.Services.AddSingleton<HomePage>();
             

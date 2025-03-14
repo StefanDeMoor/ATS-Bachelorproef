@@ -1,16 +1,21 @@
-﻿using ATS.Views;
-using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-
+using ATS.Models;
+using System.Text.Json;
+using ATS.Views;
+using ATS.Client.Services;
 namespace ATS.ViewModels
 {
-    public partial class LoginPageViewModel : BaseViewModel
+    public partial class LoginPageViewModel : ObservableObject
     {
         [ObservableProperty]
-        private string _userName;
+        private RegisterModel registerModel;
 
         [ObservableProperty]
-        private string _password;
+        private LoginModel loginModel;
+
+        [ObservableProperty]
+        private string userName;
 
         [ObservableProperty]
         private string _errorMessage;
@@ -18,40 +23,85 @@ namespace ATS.ViewModels
         [ObservableProperty]
         private bool _isErrorVisible;
 
-        public IRelayCommand LoginCommand { get; }
+        [ObservableProperty]
+        private bool isAuthenticated;
 
-        public LoginPageViewModel()
+        private readonly ClientService clientService;
+
+        public LoginPageViewModel (ClientService clientService)
         {
-            IsErrorVisible = false;
-            LoginCommand = new RelayCommand(Login, CanLogIn);
+            this.clientService = clientService;
+            RegisterModel = new();
+            LoginModel = new();
+            IsAuthenticated = false;
+            //IsErrorVisible = false;
+            //GetUserNameFromSecuredStorage();
         }
 
-        private async void Login()
+        [RelayCommand]
+        private async Task Register()
         {
-            if (!CanLogIn())
-            {
-                return;
-            }
-            await Shell.Current.GoToAsync($"//{nameof(HomePage)}");
+            await clientService.Register(RegisterModel);
         }
 
-        private bool CanLogIn()
+        [RelayCommand]
+        private async Task Login()
         {
-            bool canLogin = !string.IsNullOrWhiteSpace(UserName) && !string.IsNullOrWhiteSpace(Password);
-            if (!canLogin)
+            bool loginSuccess = await clientService.Login(LoginModel);
+
+            if (loginSuccess)
             {
-                ErrorMessage = "Username and password cannot be empty.";
-                IsErrorVisible = true;
+                await GetUserNameFromSecuredStorage();
+
+                if (IsAuthenticated && UserName != "Guest" && !string.IsNullOrEmpty(UserName))
+                {
+                    await Shell.Current.GoToAsync($"//{nameof(HomePage)}");
+                }
+                else
+                {
+                    // Handle invalid login (e.g., show error message)
+                   // IsErrorVisible = true;
+                    //_errorMessage = "Login failed. Please try again.";
+                }
             }
             else
             {
-                ErrorMessage = string.Empty;
-                IsErrorVisible = false;
+                // Show error message if login fails
+                //IsErrorVisible = true;
+                //_errorMessage = "Invalid credentials.";
             }
-            return canLogin;
+        }
+
+        [RelayCommand]
+        private async Task Logout()
+        {
+            SecureStorage.Default.Remove("Authentication");
+            IsAuthenticated = false;
+            UserName = "Guest";
+            await Shell.Current.GoToAsync("..");
+        }
+
+
+        private async Task GetUserNameFromSecuredStorage()
+        {
+            UserName = "Guest";
+            IsAuthenticated = false;
+
+            var serializedLoginResponseInStorage = await SecureStorage.Default.GetAsync("Authentication");
+
+            if (serializedLoginResponseInStorage != null)
+            {
+                var loginResponse = JsonSerializer.Deserialize<LoginResponse>(serializedLoginResponseInStorage);
+
+                if (loginResponse != null && !string.IsNullOrEmpty(loginResponse.UserName))
+                {
+                    UserName = loginResponse.UserName;
+                    IsAuthenticated = true;
+                }
+            }
         }
 
         partial void OnUserNameChanged(string value) => LoginCommand.NotifyCanExecuteChanged();
-        partial void OnPasswordChanged(string value) => LoginCommand.NotifyCanExecuteChanged();
+        //partial void OnPasswordChanged(string value) => LoginCommand.NotifyCanExecuteChanged();
     }
 }

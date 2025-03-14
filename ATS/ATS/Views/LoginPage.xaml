@@ -48,9 +48,9 @@
                             <Border.StrokeShape>
                                 <RoundRectangle CornerRadius="30"/>
                             </Border.StrokeShape>
-                            <Image Source="user" Aspect="AspectFill" Margin="0"/>
+                            <Image Source="user" Aspect="AspectFill" Margin="0" WidthRequest="40" HeightRequest="40"/>
                         </Border>
-                        <Entry  Text="{Binding UserName}" Placeholder="Username" TextColor="Black" FontAttributes="Bold"
+                        <Entry  Text="{Binding LoginModel.Email}" Placeholder="Username" TextColor="Black" FontAttributes="Bold"
                                 VerticalOptions="Center" HorizontalOptions="Fill" BackgroundColor="Transparent" Grid.Column="1"/>
                     </Grid>
                 </Border>
@@ -63,9 +63,9 @@
                             <Border.StrokeShape>
                                 <RoundRectangle CornerRadius="30"/>
                             </Border.StrokeShape>
-                            <Image Source="lock" Aspect="AspectFill" Margin="0"/>
+                            <Image Source="lock" Aspect="AspectFill" Margin="0" WidthRequest="40" HeightRequest="40"/>
                         </Border>
-                        <Entry  Text="{Binding Password}" Placeholder="Password" TextColor="Black" FontAttributes="Bold"
+                        <Entry  Text="{Binding LoginModel.Password}" Placeholder="Password" TextColor="Black" FontAttributes="Bold"
                                 VerticalOptions="Center" HorizontalOptions="Fill" BackgroundColor="Transparent" Grid.Column="1"/>
                     </Grid>
 

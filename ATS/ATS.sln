@@ -5,6 +5,15 @@ VisualStudioVersion = 17.12.35707.178
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ATS", "ATS\ATS.csproj", "{1523CBC6-DCD6-493C-B95F-52889309323E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API", "API\API.csproj", "{F02DA1B8-8B6C-480A-A8F6-A218949EE08C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "Shared\Shared.csproj", "{39E4C39D-3BFE-4B51-AB63-649920A9A655}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -16,8 +25,19 @@ Global
 		{1523CBC6-DCD6-493C-B95F-52889309323E}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
 		{1523CBC6-DCD6-493C-B95F-52889309323E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1523CBC6-DCD6-493C-B95F-52889309323E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F02DA1B8-8B6C-480A-A8F6-A218949EE08C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F02DA1B8-8B6C-480A-A8F6-A218949EE08C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F02DA1B8-8B6C-480A-A8F6-A218949EE08C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F02DA1B8-8B6C-480A-A8F6-A218949EE08C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39E4C39D-3BFE-4B51-AB63-649920A9A655}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39E4C39D-3BFE-4B51-AB63-649920A9A655}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39E4C39D-3BFE-4B51-AB63-649920A9A655}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39E4C39D-3BFE-4B51-AB63-649920A9A655}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {898A6804-AD16-407B-B0D6-07A5F20C8D74}
 	EndGlobalSection
 EndGlobal

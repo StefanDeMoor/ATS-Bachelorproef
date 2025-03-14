@@ -3,10 +3,6 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
-.nuspec/
-.buildtasks/
-templatesTest/
-
 # User-specific files
 *.rsuser
 *.suo
@@ -33,6 +29,7 @@ x86/
 bld/
 [Bb]in/
 [Oo]bj/
+[Oo]ut/
 [Ll]og/
 [Ll]ogs/
 
@@ -320,8 +317,8 @@ __pycache__/
 *.pyc
 
 # Cake - Uncomment if you are using it
-tools/**
-!tools/packages.config
+# tools/**
+# !tools/packages.config
 
 # Tabs Studio
 *.tss
@@ -364,26 +361,20 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
-.DS_Store
+*.xml
 
-# Android Studio
-.gradle/
-.idea/
-local.properties
+*.flat
 
-# Directory Build overrides for local setups
-Directory.Build.Override.props
+*.resfiles
 
-# Only the "snapshots" directory should be added to Git, not the "snapshots-diff" directory
-snapshots-diff/
+*.jar
 
-#install of dotnet version
-/.dotnet
-.dotnet
-temp
-.packages
-/src/Templates/.tempTemplateOutput
+*.intermediate
 
+*.properties
 
-# Visual Studio solution user options
-*.suo
+*.stamp
+
+*.bin
+
+*.class
