@@ -7,6 +7,6 @@ namespace Shared.DTOs
         //Dit is wat we moeten invullen in swagger
         public string? Email { get; set; }
         public string? Password { get; set; }
-        public UserRole Role { get; set; }
+        public UserRole? Role { get; set; }
     }
 }

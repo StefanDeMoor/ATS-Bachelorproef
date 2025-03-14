@@ -72,6 +72,42 @@ namespace API.Services
                 UserName = user.Email!
             };
         }
+        public async Task<bool> DeleteUserAsync(int id)
+        {
+            var user = await _dbContext.Users.FindAsync(id);
+            if (user == null)
+            {
+                return false;
+            }
+
+            _dbContext.Users.Remove(user);
+            await _dbContext.SaveChangesAsync();
+            return true;
+        }
+
+        public async Task<bool> UpdateUserAsync(int id, UpdateUserDto request)
+        {
+            var user = await _dbContext.Users.FindAsync(id);
+            if (user == null)
+            {
+                return false;
+            }
+
+            if (!string.IsNullOrEmpty(request.Email))
+            {
+                user.Email = request.Email;
+            }
+
+            if (request.Role.HasValue)
+            {
+                user.Role = request.Role.Value;
+            }
+
+            await _dbContext.SaveChangesAsync();
+            return true;
+        }
+
+
 
         private bool VerifyPassword(string providedPassword, string storedPasswordHash)
         {
@@ -123,4 +159,5 @@ namespace API.Services
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
     }
+
 }
