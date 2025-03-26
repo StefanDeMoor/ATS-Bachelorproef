@@ -16,6 +16,7 @@
                 Command="{Binding GoToDataCommand}"
                 VerticalOptions="Center"
                 HorizontalOptions="Center"
-                Padding="20,10" />
+                Padding="20,10"
+                IsVisible="{Binding IsButtonVisible}" />
     </VerticalStackLayout>
 </ContentPage>

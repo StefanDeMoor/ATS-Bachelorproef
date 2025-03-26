@@ -4,6 +4,7 @@ using ATS.Models;
 using System.Text.Json;
 using ATS.Views;
 using ATS.Client.Services;
+using ATS.Services;
 namespace ATS.ViewModels
 {
     public partial class LoginPageViewModel : ObservableObject
@@ -27,15 +28,16 @@ namespace ATS.ViewModels
         private bool isAuthenticated;
 
         private readonly ClientService clientService;
+        private readonly UserService userService;
 
-        public LoginPageViewModel (ClientService clientService)
+        public LoginPageViewModel (ClientService clientService, UserService userService)
         {
             this.clientService = clientService;
+            this.userService = userService;
             RegisterModel = new();
             LoginModel = new();
             IsAuthenticated = false;
             //IsErrorVisible = false;
-            //GetUserNameFromSecuredStorage();
         }
 
         [RelayCommand]
@@ -51,54 +53,38 @@ namespace ATS.ViewModels
 
             if (loginSuccess)
             {
-                await GetUserNameFromSecuredStorage();
-
-                if (IsAuthenticated && UserName != "Guest" && !string.IsNullOrEmpty(UserName))
+                var user = await userService.GetCurrentUserAsync();
+                if (user != null && !string.IsNullOrEmpty(user.UserName))
                 {
+                    await userService.SetCurrentUserAsync(user);
+                    IsAuthenticated = true;
+                    UserName = user.UserName;
                     await Shell.Current.GoToAsync($"//{nameof(HomePage)}");
                 }
                 else
                 {
-                    // Handle invalid login (e.g., show error message)
-                   // IsErrorVisible = true;
-                    //_errorMessage = "Login failed. Please try again.";
+                    ShowError("Invalid login credentials.");
                 }
             }
             else
             {
-                // Show error message if login fails
-                //IsErrorVisible = true;
-                //_errorMessage = "Invalid credentials.";
+                ShowError("Login failed. Please try again.");
             }
         }
 
         [RelayCommand]
         private async Task Logout()
         {
-            SecureStorage.Default.Remove("Authentication");
+            userService.Logout();
             IsAuthenticated = false;
-            UserName = "Guest";
+            UserName = string.Empty;
             await Shell.Current.GoToAsync("..");
         }
 
-
-        private async Task GetUserNameFromSecuredStorage()
+        private void ShowError(string message)
         {
-            UserName = "Guest";
-            IsAuthenticated = false;
-
-            var serializedLoginResponseInStorage = await SecureStorage.Default.GetAsync("Authentication");
-
-            if (serializedLoginResponseInStorage != null)
-            {
-                var loginResponse = JsonSerializer.Deserialize<LoginResponse>(serializedLoginResponseInStorage);
-
-                if (loginResponse != null && !string.IsNullOrEmpty(loginResponse.UserName))
-                {
-                    UserName = loginResponse.UserName;
-                    IsAuthenticated = true;
-                }
-            }
+            IsErrorVisible = true;
+            ErrorMessage = message;
         }
 
         partial void OnUserNameChanged(string value) => LoginCommand.NotifyCanExecuteChanged();

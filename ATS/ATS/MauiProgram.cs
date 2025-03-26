@@ -1,5 +1,6 @@
 ﻿using ATS.Client.Services;
 using ATS.Platforms.Android;
+using ATS.Services;
 using ATS.ViewModels;
 using ATS.Views;
 using Microsoft.Extensions.Logging;
@@ -43,6 +44,7 @@ namespace ATS
             builder.Logging.AddDebug();
 
             builder.Services.AddSingleton<ClientService>();
+            builder.Services.AddSingleton<UserService>();
             builder.Services.AddSingleton<LoginPage>();
             builder.Services.AddSingleton<HomePage>();
             builder.Services.AddSingleton<DataPage>();

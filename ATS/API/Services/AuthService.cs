@@ -69,7 +69,8 @@ namespace API.Services
             {
                 AccessToken = token,
                 RefreshToken = "dummy-refresh-token",
-                UserName = user.Email!
+                UserName = user.Email!,
+                Role = user.Role.ToString()
             };
         }
         public async Task<bool> DeleteUserAsync(int id)

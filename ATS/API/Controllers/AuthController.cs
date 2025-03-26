@@ -22,7 +22,8 @@ namespace Api.Controllers
             var registerModel = new ApiRegisterModel
             {
                 Email = request.Email,
-                Password = request.Password
+                Password = request.Password,
+                Role = Shared.Enums.UserRole.Guest,
             };
 
             var isRegistered = await _authService.RegisterAsync(registerModel);
