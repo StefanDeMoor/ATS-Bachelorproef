@@ -22,7 +22,8 @@ namespace Api.Controllers
             var registerModel = new ApiRegisterModel
             {
                 Email = request.Email,
-                Password = request.Password
+                Password = request.Password,
+                Role = Shared.Enums.UserRole.Guest,
             };
 
             var isRegistered = await _authService.RegisterAsync(registerModel);
@@ -53,5 +54,28 @@ namespace Api.Controllers
 
             return Unauthorized(new { message = "Invalid credentials" });
         }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteUser(int id)
+        {
+            var isDeleted = await _authService.DeleteUserAsync(id);
+            if (!isDeleted)
+            {
+                return NotFound(new { message = "User not found" });
+            }
+            return Ok(new { message = "User deleted successfully" });
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateUser(int id, [FromBody] UpdateUserDto request)
+        {
+            var isUpdated = await _authService.UpdateUserAsync(id, request);
+            if (!isUpdated)
+            {
+                return NotFound(new { message = "User not found" });
+            }
+            return Ok(new { message = "User updated successfully" });
+        }
+
     }
 }
