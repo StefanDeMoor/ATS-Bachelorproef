@@ -2,11 +2,25 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ATS.Views.DataPage"
-             Title="DataPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             Title="User Information"
+             xmlns:viewModels="clr-namespace:ATS.ViewModels"
+             x:DataType="viewModels:DataPageViewModel">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+            <StackLayout Spacing="15">
+                <StackLayout Orientation="Horizontal" Spacing="10">
+                    <Label Text="Email:" FontSize="20" VerticalOptions="Center" HorizontalOptions="Start" />
+                    <Label Text="{Binding UserName}" FontSize="20" FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="StartAndExpand" />
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal" Spacing="10">
+                    <Label Text="Role:" FontSize="20" VerticalOptions="Center" HorizontalOptions="Start" />
+                    <Label Text="{Binding UserRole}" FontSize="20" FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="StartAndExpand" />
+                </StackLayout>
+            </StackLayout>
+
+            <BoxView HeightRequest="10" />
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

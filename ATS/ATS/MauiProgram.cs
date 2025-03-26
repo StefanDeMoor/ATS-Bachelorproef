@@ -51,6 +51,7 @@ namespace ATS
             
             builder.Services.AddSingleton<LoginPageViewModel>();
             builder.Services.AddSingleton<HomePageViewModel>();
+            builder.Services.AddSingleton<DataPageViewModel>();
 #endif
 
             return builder.Build();

@@ -1,9 +1,13 @@
-namespace ATS.Views;
+using ATS.ViewModels;
 
-public partial class DataPage : ContentPage
+namespace ATS.Views
 {
-	public DataPage()
-	{
-		InitializeComponent();
-	}
+    public partial class DataPage : ContentPage
+    {
+        public DataPage(DataPageViewModel viewModel)
+        {
+            InitializeComponent();
+            BindingContext = viewModel; 
+        }
+    }
 }
